@@ -37,5 +37,5 @@ public class Hero extends Combatiente{
         return nom_items;
     }
 
-    
+
 }

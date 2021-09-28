@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Scenario {
 
+    Vista vista = new Vista();
+
     // Instancia de los actores. 
     Turn turn;
     
@@ -19,58 +21,43 @@ public class Scenario {
      
     public void match(){//Inicialización de la partida. Dentro de este método pasará todo lo chido. 
 
-        /**
-         * Bueno pues... este método es el escenario entonces ajá. 
-         * 
-         * Necesito hacer lo siguiente:
-         * 
-         * 
-         * En un bucle, que no deberá deternse hasta que uno ambos jugadores mueran o maten al jefe. 
-         * Entonces, haré lo siguiente:
-         * 
-         * Para comenzar, tengo el problema de los arrays de múltiples clases. Se resuelve... no teniendo múltiples clases. 
-         * Es decir, en vez de tener una clase por cada tipo de enemigo, se harán instancias con modificadores por métodos. 
-         * Claro que esto me deja el problema del boss, que DEBE ser otra clase. Por esto, he pensado que en vez de enfrentar
-         * todo al mismo tiempo, la pelea tendrá fases. La primera consistirá en derrotar a los esbirros y la segunda al jefe.
-         * 
-         * Entonces, resolvemos el problema de los arrays. Aunque es una mamada porque ya había hecho 5 clases solo para esta cosa. 
-         * Y ES QUE FIJO HAY COMO RESOLVERLO, VOY A INTENTAR PREGUNTAR MAÑANA QUE PEX, pero no espero tener resultados. 
-         * Mañana dice, si es en unas horas. 
-         * 
-         * Ah! Anoración. Sigo teniendo dos tipos de objetos, pero son héroe y enemigo. Entonces no tengo problemas, solo que uno no
-         * podrá afectar al mismo tipo de objeto. O si podría pero que hueva hacer más métodos. Primero que "funcie" y despues vemos que pedo.  
-         * 
-         * Lo segundo! 
-         * ¿Como determinamos los objetos que han muerto? Bueno, se me ocurre que puedo hacer una comprobación cada iteración del ciclo turn.
-         * Si un objeto tiene vida 0 o negativa, entonces se eliminará del arraylist correspondiente. 
-         * 
-         * Tercero! 
-         * El problema existente con el ciclo turn es como saber que ya pasó un turno y como saber a quien le toca?
-         * La asignación será automática. La haremos por medio del índice en el arraylist. 
-         * 
-         * Cuarto! A quien afecta la acción?
-         * Bueno, pues... pienso que esto es más fácil. Se mostrará el nombre por medio del getNombre(), de cada uno de los pizados del otro arraylist.
-         * 
-         * Si es turno del jugador, eligirá a quien atacar. SI es turno de la máquina, la máquina decidirá por medio de rand. 
-         * 
-         * 
-         * Quinto! Como le hacemos para "pasar" o "bloquar"?
-         * Pues... alm no sé. Creo que lo apropiado sería tener un método que modifique un atributo de la clase. Modificar el método getDamage() de manera que
-         * ante de restar vida, compruebe si "hay escudo o no". Si hubiese escudo, no se ejecuta y se devuelve un mensaje de "ataque bloqueado" o una mamada así. 
-         * 
-         * Sexto! Como madres meto la segunda fase de la batalla?
-         * Bueno, eso lo voy a pensar despues porque la verdad, ya no tengo muchas ideas y se me acabó el cafe. I'm a field planner, no un estratega nato so lets do whats
-         * more importate, ok? bye. 
-         * 
-         */
+        int choosen_hero = 0;
+        int no_heroes = vista.settingHeroes();
+        boolean stop = false;
+        while(stop == false){
+            if(no_heroes == 1){
+                choosen_hero = vista.choosingHero();
+                stop = true;
+            }else if(no_heroes ==2){
+                choosen_hero = 0;
+                stop = true;
+            }else{
+                vista.tryAgain();
+            }
+        }
 
-        //INICO DE LA MATCH.         
-        setActors(2, 1);// Llamar a la vista. 
-        
+        setActors(no_heroes, choosen_hero);// Llamar a la vista. 
         turn = new Turn(turnos_hero.size() + turnos_npc.size());
-
         
     }
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
+
     
 
 
@@ -109,7 +96,6 @@ public class Scenario {
         }
     }
     
-    //************************************************************************************** */
     //Métodos individuales para inicializar las instancias de actores. 
     public void instanceOfOrco(){
         this.orco = new Npc("Marcus");
@@ -159,6 +145,5 @@ public class Scenario {
         }
     }
 
-    public int menu
 
 }
