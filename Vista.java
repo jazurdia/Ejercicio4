@@ -25,7 +25,6 @@ public class Vista {
             }
         }
         return indexOfDamaged;
-
     }
 
     public int menu(String nom_turno)throws InputMismatchException{
@@ -37,7 +36,7 @@ public class Vista {
         while (stop == false){
             System.out.println("Turno de " + nom_turno);
             System.out.println("1. Atacar");
-            System.out.println("2. Bloquar");
+            System.out.println("2. Bloquear");
             System.out.println("3. Pasar");
 
             try {
@@ -93,14 +92,14 @@ public class Vista {
 
     }
 
-    public void show_name_listA(ArrayList<Hero> names){
+    public void show_name_listA(ArrayList<Hero> names){// Muestra un ArrayList de Hero
         for(int i = 0; i < names.size(); i++){
             System.out.println("" + i + ":  " + names.get(i).getNombre());
         }
 
     }
 
-    public void show_name_listB(ArrayList<Npc> names){
+    public void show_name_listB(ArrayList<Npc> names){// Muestra un ArrayList de NPC
         for(int i = 0; i < names.size(); i++){
             System.out.println("" + i + ":  " + names.get(i).getNombre());
         }

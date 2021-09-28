@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Hero extends Combatiente{
 
-    int max_size = 3;
-    protected ArrayList<Item> bag = new ArrayList<Item>();
+    private int max_size = 3;
+    private boolean escudo = false; //
+    private ArrayList<Item> bag = new ArrayList<Item>();
 
 
     public Hero(String nombre) {
         super(nombre);
     }
-
     
     public void setSize(int num){// no máximo de elementos. 
         this.max_size = num;
@@ -37,5 +37,19 @@ public class Hero extends Combatiente{
         return nom_items;
     }
 
-
+    public void setEscudo(boolean escudo){ // No sé si la voy a usar jaja, pero bueno x. La vida sigue. 
+        this.escudo = escudo;
+    }
+    
+    public void usingEscudo(){
+        if(escudo == false){
+            this.escudo = true;
+        }else if(escudo == true){
+            this.escudo = false;
+        }
+    }
+    
+    public boolean getEscudo(){
+        return escudo;
+    }
 }

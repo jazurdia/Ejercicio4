@@ -53,31 +53,24 @@ public class Scenario {
              * 2. NPC toman desiciones. 
              */
             boolean goodguys = false;
-            while(goodguys == false){
-                for(int i = 0; i<turnos_hero.size(); i++){
-                    // MOSTRAR MENÚ
-                    int opcion1 = vista.menu(turnos_hero.get(i).getNombre());
-                    switch(opcion1){
-                        case 1:
-                        
+            for(int i = 0; i<turnos_hero.size(); i++){
+                // MOSTRAR MENÚ
+                int opcion1 = vista.menu(turnos_hero.get(i).getNombre());
+                switch(opcion1){
+                    case 1:// Ataque de Hero a Enemy
+                    menu1(turnos_npc, turnos_hero, i, 1);
+                    break;
+                    
+                    case 2: // Bloquear ataque. 
 
 
-
-                        break;
-
-                        
-                    }
-
-
-                    //Despues, si tengo que curar, bloquar, 
+                    
                 }
-
             }
-
         }
     }
 
-    public void menu1a(ArrayList<Npc> listaN, ArrayList<Hero> listaH, int index_of_attacker, int a){
+    public void menu1(ArrayList<Npc> listaN, ArrayList<Hero> listaH, int index_of_attacker, int a){
         
         if(a == 1){//the enemy is getting attacked. 
             vista.show_name_listB(listaN);
@@ -92,9 +85,16 @@ public class Scenario {
             attack(index_of_victim, listaN.get(index_of_attacker).getPtsAttack(), 1);
             vista.statsOfDamaged(listaH.get(index_of_victim).getNombre(), listaN.get(index_of_attacker).getPtsAttack(), listaH.get(index_of_victim).getVida());
         }
+    } 
+    
+    public void menu2(){
+        // Solo los héroes pueden 
+
+
+
     }
-    
-    
+
+
     public int howManyTimesG(ArrayList<Hero> list){
         int howManyTimes = list.size();
         return howManyTimes;

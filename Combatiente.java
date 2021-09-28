@@ -9,7 +9,6 @@ public class Combatiente{
     protected int pts_attack = 2;
     protected String wd_i = "Aquí vamos!";
     protected String wd_f = "He... terminado";
-    protected boolean bando = false;
 
     /**
      * 
@@ -53,18 +52,5 @@ public class Combatiente{
     public int getPtsAttack(){
         return pts_attack;
     }
-
-    public void clickBando(){
-        if(bando == false){
-            this.bando = true;
-        }else if(bando == true){
-            this.bando = false;
-        }
-    }
-
-    public boolean getBando(){
-        return bando;
-    }
-
     
 }
