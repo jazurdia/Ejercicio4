@@ -39,6 +39,7 @@ public class Scenario {
         //  FALTA METER EN LA LISTA PARA LOS TURNOS!!!!!!!!!!!! 
         Random rand = new Random();
         int random_num = rand.nextInt(2)+1;
+        
         if(random_num == 1){
             instanceOfOrco();
             instanceOfEnano();
