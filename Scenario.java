@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Scenario {
 
     Vista vista = new Vista();
@@ -76,38 +77,24 @@ public class Scenario {
         }
     }
 
-    public void menu1a(ArrayList<Npc> lista, ArrayList<Hero> lista2, int index_of_attacker, int a){
+    public void menu1a(ArrayList<Npc> listaN, ArrayList<Hero> listaH, int index_of_attacker, int a){
         
         if(a == 1){//the enemy is getting attacked. 
-            vista.show_name_listB(lista);
-            int index_of_victim = 0;// Méodo para preguntar a qué enemigo matar jasjas xdddd .
-            attack(index_of_victim, lista2.get(index_of_attacker).getPtsAttack(), 2);
-            vista.statsOfDamaged(lista.get(index_of_victim).getNombre(), lista2.get(index_of_attacker).getPtsAttack(), lista.get(index_of_victim).getVida());
+            vista.show_name_listB(listaN);
+            int index_of_victim = vista.whoGetsDamaged();
+            attack(index_of_victim, listaH.get(index_of_attacker).getPtsAttack(), 2);
+            vista.statsOfDamaged(listaN.get(index_of_victim).getNombre(), listaH.get(index_of_attacker).getPtsAttack(), listaN.get(index_of_victim).getVida());
     
-        }else if(a == 2){ // the player 
-            vista.show_name_listA(lista2);
-            int index_of_victim = 0;// Méodo para preguntar a qué enemigo matar jasjas xdddd .
-            attack(index_of_victim, lista.get(index_of_attacker).getPtsAttack(), 1);
-            vista.statsOfDamaged(lista.get(index_of_victim).getNombre(), lista2.get(index_of_attacker).getPtsAttack(), lista.get(index_of_victim).getVida());
-            // Revisar esta shit. pls 
+        }else if(a == 2){ // the Hero is getting attacked. 
         
+            vista.show_name_listA(listaH);
+            int index_of_victim = vista.whoGetsDamaged();
+            attack(index_of_victim, listaN.get(index_of_attacker).getPtsAttack(), 1);
+            vista.statsOfDamaged(listaH.get(index_of_victim).getNombre(), listaN.get(index_of_attacker).getPtsAttack(), listaH.get(index_of_victim).getVida());
         }
-
-
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //CUALQUIER C¿AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
     public int howManyTimesG(ArrayList<Hero> list){
         int howManyTimes = list.size();
         return howManyTimes;
@@ -161,27 +148,27 @@ public class Scenario {
     public void instanceOfOrco(){
         this.orco = new Npc("Marcus");
         orco.setVida(15);
-        orco.setAttack(3);
+        orco.setPtsAttack(3);
         turnos_npc.add(orco);
     }
 
     public void instanceOfEnano(){
         this.enano = new Npc("Eduardo");
         enano.setVida(5);
-        enano.setAttack(1);
+        enano.setPtsAttack(1);
         turnos_npc.add(enano);
     }
 
     public void instanceOfEsqueleto(){
         this.esqueleto = new Npc("Julia");
         esqueleto.setVida(3);
-        esqueleto.setAttack(3);
+        esqueleto.setPtsAttack(3);
         turnos_npc.add(esqueleto);
     }
 
     public void instanceOfWarrior(){
         this.warrior = new Hero("Marcus");
-        warrior.setAttack(5);
+        warrior.setPtsAttack(5);
         warrior.setVida(20);
         turnos_hero.add(warrior);
     }
