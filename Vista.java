@@ -5,9 +5,31 @@ public class Vista {
         System.out.println("Intenta de nuevo");
     }
 
+    public void statsOfDamaged(String name, int damage, int newVida){
+        System.out.println("" + name + " ha recibido " + damage + " de daño");
+        System.out.println("Ahora tiene: " + newVida + " de vida.");
+    }
 
-    public int menu1(String nom_turno)throws InputMismatchException{
-        int menu1 = 0;
+    public int whoGetsDamaged(){
+        Scanner in = new Scanner(System.in);
+        boolean stop = false;
+        int indexOfDamaged = 0;
+        while (stop == false){
+            try { 
+                System.out.println("Ingresa el número del enemigo que atacarás");
+                indexOfDamaged = in.nextInt();
+                stop = true;
+            } catch (Exception e) {
+                tryAgain();
+                in = new Scanner(System.in);
+            }
+        }
+        return indexOfDamaged;
+
+    }
+
+    public int menu(String nom_turno)throws InputMismatchException{
+        int menu = 0;
         Scanner in = new Scanner(System.in);
 
         boolean stop = false;
@@ -19,7 +41,7 @@ public class Vista {
             System.out.println("3. Pasar");
 
             try {
-                menu1 = in.nextInt();
+                menu = in.nextInt();
                 stop = true;
             } catch (InputMismatchException e) {
                 in = new Scanner(System.in);
@@ -28,7 +50,7 @@ public class Vista {
 
         }
 
-        return menu1;
+        return menu;
     }
 
     public int settingHeroes(){
@@ -68,6 +90,20 @@ public class Vista {
             }
         }
         return choosen_hero;
+
+    }
+
+    public void show_name_listA(ArrayList<Hero> names){
+        for(int i = 0; i < names.size(); i++){
+            System.out.println("" + i + ":  " + names.get(i).getNombre());
+        }
+
+    }
+
+    public void show_name_listB(ArrayList<Npc> names){
+        for(int i = 0; i < names.size(); i++){
+            System.out.println("" + i + ":  " + names.get(i).getNombre());
+        }
 
     }
 

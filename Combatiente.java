@@ -38,11 +38,11 @@ public class Combatiente{
         this.vida = num;
     }
 
-    public void setPtsAttack(int num){
-        this.pts_attack = num;
+    public int getVida(){
+        return vida;
     }
 
-    public void setAttack(int num){
+    public void setPtsAttack(int num){
         this.pts_attack = num;
     }
 

@@ -55,6 +55,18 @@ public class Scenario {
             while(goodguys == false){
                 for(int i = 0; i<turnos_hero.size(); i++){
                     // MOSTRAR MENÚ
+                    int opcion1 = vista.menu(turnos_hero.get(i).getNombre());
+                    switch(opcion1){
+                        case 1:
+                        
+
+
+
+                        break;
+
+                        
+                    }
+
 
                     //Despues, si tengo que curar, bloquar, 
                 }
@@ -63,6 +75,38 @@ public class Scenario {
 
         }
     }
+
+    public void menu1a(ArrayList<Npc> lista, ArrayList<Hero> lista2, int index_of_attacker, int a){
+        
+        if(a == 1){//the enemy is getting attacked. 
+            vista.show_name_listB(lista);
+            int index_of_victim = 0;// Méodo para preguntar a qué enemigo matar jasjas xdddd .
+            attack(index_of_victim, lista2.get(index_of_attacker).getPtsAttack(), 2);
+            vista.statsOfDamaged(lista.get(index_of_victim).getNombre(), lista2.get(index_of_attacker).getPtsAttack(), lista.get(index_of_victim).getVida());
+    
+        }else if(a == 2){ // the player 
+            vista.show_name_listA(lista2);
+            int index_of_victim = 0;// Méodo para preguntar a qué enemigo matar jasjas xdddd .
+            attack(index_of_victim, lista.get(index_of_attacker).getPtsAttack(), 1);
+            vista.statsOfDamaged(lista.get(index_of_victim).getNombre(), lista2.get(index_of_attacker).getPtsAttack(), lista.get(index_of_victim).getVida());
+            // Revisar esta shit. pls 
+        
+        }
+
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //CUALQUIER C¿AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     public int howManyTimesG(ArrayList<Hero> list){
         int howManyTimes = list.size();
@@ -155,9 +199,9 @@ public class Scenario {
 
     //Métodos de accion (métodos de batalla)
     public void attack(int index, int pts_attack, int a){
-        if(a == 1){
+        if(a == 1){// daño a hero
             turnos_hero.get(index).getsDamage(pts_attack);
-        }else if(a==2){
+        }else if(a==2){// daño a enemy
             turnos_npc.get(index).getsDamage(pts_attack);
         }
     }
