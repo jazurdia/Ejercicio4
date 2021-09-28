@@ -5,19 +5,45 @@
 public class Combatiente{
     
     protected String nombre = null;
-    protected int vida = (Integer) null;
-    protected int pts_atack = (Integer) null;
-    protected String wd_i = null;
-    protected String wd_f = null;
+    protected int vida = 10;
+    protected int pts_attack = 2;
+    protected String wd_i = "Aquí vamos!";
+    protected String wd_f = "He... terminado";
 
-   public Combatiente (String nombre, int vida, int pts_atack, String wd_i, String wd_f){
-
+    /**
+     * 
+     * @param nombre name of the character
+     * @param vida life points of the character
+     * @param pts_atack attack poins of the character
+     * @param wd_i a message that will be shown at the beggining of the game by this user. 
+     * @param wd_f a message that will be shown at the end of the character's life or at the end of the match. 
+     */
+    
+    public Combatiente (String nombre){
         this.nombre=nombre;
-        this.vida = vida;
-        this.pts_atack = pts_atack;
-        this.wd_i = wd_i;
-        this.wd_f = wd_f;
+        
+    }
 
-   }
+    public void getsDamage(int num){
+       this.vida = vida - num;
+
+    }
+
+    public void getsHealed(int num){
+        this.vida = vida + num;
+    }
+
+    public void setVida(int num){
+        this.vida = num;
+    }
+
+    public void setPtsAttack(int num){
+        this.pts_attack = num;
+    }
+
+    public void setAttack(int num){
+        this.pts_attack = num;
+    }
+
     
 }
