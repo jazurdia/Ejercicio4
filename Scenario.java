@@ -19,7 +19,7 @@ public class Scenario {
     ArrayList<Npc> turnos_npc = new ArrayList<Npc>();
 
      
-    public void match(){//Inicialización de la partida. Dentro de este método pasará todo lo chido. 
+    public void match2(){//Inicialización de la partida. Dentro de este método pasará todo lo chido. 
 
         int choosen_hero = 0;
         int no_heroes = vista.settingHeroes();
@@ -41,21 +41,38 @@ public class Scenario {
         
     }
 
-    /**
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     */
+    public void match(){
+        setActors(2, 0);
+        boolean stopMatch = false;
+        while (stopMatch == false){
+            /**
+             * 1. Imprimimos el menu para el jugador.
+             * Para ver cuantas veces hay que hacer esto, debo encontrar el size del arraylist de hero. 
+             * 
+             * 2. NPC toman desiciones. 
+             */
+            boolean goodguys = false;
+            while(goodguys == false){
+                for(int i = 0; i<turnos_hero.size(); i++){
+                    // MOSTRAR MENÚ
+
+                    //Despues, si tengo que curar, bloquar, 
+                }
+
+            }
+
+        }
+    }
+
+    public int howManyTimesG(ArrayList<Hero> list){
+        int howManyTimes = list.size();
+        return howManyTimes;
+    }
+
+    public int howManyTimesB(ArrayList<Npc> list){
+        int howManyTimes = list.size();
+        return howManyTimes;
+    }
 
 
     

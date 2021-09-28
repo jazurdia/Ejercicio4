@@ -6,8 +6,8 @@ public class Vista {
     }
 
 
-    public int menu(String nom_turno)throws InputMismatchException{
-        int menu = 0;
+    public int menu1(String nom_turno)throws InputMismatchException{
+        int menu1 = 0;
         Scanner in = new Scanner(System.in);
 
         boolean stop = false;
@@ -19,7 +19,7 @@ public class Vista {
             System.out.println("3. Pasar");
 
             try {
-                menu = in.nextInt();
+                menu1 = in.nextInt();
                 stop = true;
             } catch (InputMismatchException e) {
                 in = new Scanner(System.in);
@@ -28,7 +28,7 @@ public class Vista {
 
         }
 
-        return menu;
+        return menu1;
     }
 
     public int settingHeroes(){

@@ -1,3 +1,4 @@
+import java.util.*;
 public class Turn {
     int turn = 0;
     int no_players;
@@ -17,6 +18,18 @@ public class Turn {
 
     public int getTurn(){
         return turn;
+    }
+
+    public String turnoDe(ArrayList<Hero> lista){
+
+        String hero;
+        for(int i = 0; i<lista.size(); i++){
+            if(lista.get(i).getBando() == false){
+                hero=lista.get(i).getNombre();
+            }else{}
+        }
+
+        return hero;
     }
 
 }
