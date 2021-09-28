@@ -6,12 +6,13 @@ public class Turn {
         this.no_players = no_players;
     }
     
-    public void nextTurn(){
+    public int nextTurn(){
         if(turn < no_players){
             this.turn++;
         }else{
             this.turn = 0;
         }
+        return turn;
     }
 
     public int getTurn(){

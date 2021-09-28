@@ -45,5 +45,13 @@ public class Combatiente{
         this.pts_attack = num;
     }
 
+    public String getNombre(){
+        return nombre;
+    }
+
+    public int getPtsAttack(){
+        return pts_attack;
+    }
+
     
 }
