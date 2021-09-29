@@ -126,6 +126,7 @@ public class Scenario {
             
             if(hero1 == 1){// warrior
                 instanceOfWarrior();
+
             }else if(hero1 == 2){// explorador
                 instanceOfExplorador();
             }
@@ -152,17 +153,14 @@ public class Scenario {
             instanceOfEsqueleto();
             instanceOfOrco();
         }
-    }
+    }  
     
-    
-    public void fillBag(int max, Hero hero){
-        for (int i = 0; i<max; i++){
+    public void fillBag(Hero hero){
+        for (int i = 0; i<hero.getBagSize(); i++){
             Random rand = new Random();
-            hero.addItemByArray(items);
+            hero.addItem(items.get(rand.nextInt(6)));
 
         }
-    
-    
     }
 
 
@@ -193,13 +191,16 @@ public class Scenario {
         this.warrior = new Hero("Marcus");
         warrior.setPtsAttack(5);
         warrior.setVida(20);
-        warrior.setSize(2);
+        warrior.setBagSize(2);
+        fillBag(warrior);
         turnos_hero.add(warrior);
+
     }
 
     public void instanceOfExplorador(){
         this.explorador = new Hero("Sophie");
-        explorador.setSize(4);
+        explorador.setBagSize(4);
+        fillBag(warrior);
         turnos_hero.add(explorador);
     }
 
@@ -207,7 +208,6 @@ public class Scenario {
         this.boss = new Boss("Rey_Orco");
         // no hay lista porque va solin solito. 
     }    
-    
     
     //Métodos de accion (métodos de batalla)
     public void attack(int index, int pts_attack, int a){
