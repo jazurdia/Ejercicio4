@@ -28,20 +28,22 @@ public class Scenario {
         items.add(item3);
         items.add(item4);
         items.add(item5);
-        items.add(item6);    
+        items.add(item6);   
     }
     
     //Escenario donde se llevará a cabo la pelea. 
     public void match(){
         setActors(2, 0);//MÉTODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
         boolean stopMatch = false;
-        boolean phaseOne = false;
-        while (stopMatch == false){
-            while(phaseOne == false){
+        boolean stopPhase1 = false;
+        while(stopPhase1 == false){
+            
+            // Solo pelearan con el enemigo NPC
+            while (stopMatch == false){
                 for(int i = 0; i<turnos_hero.size(); i++){
                 // MOSTRAR MENÚ
                 int opcionA = vista.menu(turnos_hero.get(i).getNombre());
-                switch(opcionA){
+                switch(opcionA){// CICLO PARA LOS HÉROES
                     case 1:// Ataque de Hero a Enemy
                         menu1(turnos_npc, turnos_hero, i);
                         break;
@@ -53,10 +55,13 @@ public class Scenario {
                     case 3: // pass.
                         menu3(turnos_hero, i);
                         break;
+
+                    case 4: // tirar items
+                        menu4(turnos_npc, turnos_hero, i);
                     }
                 }
 
-                for(int n = 0; n<turnos_npc.size(); n++){
+                for(int n = 0; n<turnos_npc.size(); n++){ //CICLO PARA NPCccccccccccccccc
                     Random rand = new Random();
                     int opcionB = rand.nextInt(2)+1;
                     switch (opcionB) {
@@ -68,11 +73,23 @@ public class Scenario {
                             menu2b(turnos_npc, turnos_hero, n);
                             break;
                     }
+                    //boss
                 }
+                
+                stillAlive();
+                if (stageOneIsDone() == true){
+                    stopMatch = true;
+                }
+                if (stageTwoIsDone() == true){
+                    stopMatch = true;
+                }
+                
+            }
 
-                //boss
-            } 
-        }
+            stopPhase1 = true;
+            }
+            
+        
     }
 
     public void menu1(ArrayList<Npc> listaN, ArrayList<Hero> listaH, int index_of_attacker){//The enemy is getting attacked.  
@@ -80,6 +97,12 @@ public class Scenario {
         int index_of_victim = vista.whoGetsDamaged();
         attack(index_of_victim, listaH.get(index_of_attacker).getPtsAttack(), 2);
         vista.statsOfDamaged(listaN.get(index_of_victim).getNombre(), listaH.get(index_of_attacker).getPtsAttack(), listaN.get(index_of_victim).getVida());
+
+    }
+
+    public void menu1c(ArrayList<Hero> heroes, int index_of_attacker){
+        System.out.println("Ahora contra el jefe!");
+
 
     }
     
@@ -117,6 +140,31 @@ public class Scenario {
     public int howManyTimesB(ArrayList<Npc> list){
         int howManyTimes = list.size();
         return howManyTimes;
+    }
+
+    public void menu4(ArrayList<Npc> listaN, ArrayList<Hero> listaH, int index_of_attacker){
+        vista.show_name_listB(listaN);
+        int index_of_victim = vista.whoGetsDamaged();
+        attack(index_of_victim, listaH.get(index_of_attacker).getBag().get(0).getEffect(), 2);
+        vista.statsOfDamaged(listaN.get(index_of_victim).getNombre(), listaH.get(index_of_attacker).getPtsAttack(), listaN.get(index_of_victim).getVida());
+    }
+     
+    public void menuBoss(Boss boss, ArrayList<Hero> hero){
+        Random rand = new Random();
+        int opcion = rand.nextInt(1)+1;
+        switch (opcion) {
+            case 1:// ataca
+                int index = rand.nextInt(1);
+                attack(index, boss.getPtsAttack(), 1);
+                vista.statsOfDamaged(hero.get(index).getNombre(), boss.getPtsAttack(), hero.get(index).getVida());
+                break;
+        
+            case 2: 
+                int index2 = rand.nextInt(1);
+                specialAttack(rand.nextInt(), boss.specialAttack());
+                vista.statsOfDamaged(hero.get(index2).getNombre(), boss.getPtsAttack(), hero.get(index2).getVida());
+                break;
+        }
     }
 
     //Métodos de inicialización Masiva
@@ -159,36 +207,33 @@ public class Scenario {
         for (int i = 0; i<hero.getBagSize(); i++){
             Random rand = new Random();
             hero.addItem(items.get(rand.nextInt(6)));
-
         }
     }
 
-
-
     //Métodos individuales para inicializar las instancias de actores. 
     public void instanceOfOrco(){
-        this.orco = new Npc("Marcus");
+        this.orco = new Npc("Marcus Orco");
         orco.setVida(15);
         orco.setPtsAttack(3);
         turnos_npc.add(orco);
     }
 
     public void instanceOfEnano(){
-        this.enano = new Npc("Eduardo");
+        this.enano = new Npc("Eduardo Enano");
         enano.setVida(5);
         enano.setPtsAttack(1);
         turnos_npc.add(enano);
     }
 
     public void instanceOfEsqueleto(){
-        this.esqueleto = new Npc("Julia");
+        this.esqueleto = new Npc("Julia Esqueleto");
         esqueleto.setVida(3);
         esqueleto.setPtsAttack(3);
         turnos_npc.add(esqueleto);
     }
 
     public void instanceOfWarrior(){
-        this.warrior = new Hero("Marcus");
+        this.warrior = new Hero("Manuel Warrior");
         warrior.setPtsAttack(5);
         warrior.setVida(20);
         warrior.setBagSize(2);
@@ -198,7 +243,7 @@ public class Scenario {
     }
 
     public void instanceOfExplorador(){
-        this.explorador = new Hero("Sophie");
+        this.explorador = new Hero("Sophie Explorer");
         explorador.setBagSize(4);
         fillBag(warrior);
         turnos_hero.add(explorador);
@@ -252,5 +297,20 @@ public class Scenario {
             stageOneIsDone = false;
         }
     return stageOneIsDone;
+    }
+
+    public boolean stageTwoIsDone(){
+        boolean stageTwoIsDone;
+        if(turnos_hero.size() <= 0){
+            stageTwoIsDone = true;
+        }else{
+            stageTwoIsDone = false;
+        }
+
+        return stageTwoIsDone;
+    }
+
+    public void showStatistics(){
+
     }
 }
