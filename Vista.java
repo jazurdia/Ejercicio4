@@ -5,6 +5,14 @@ public class Vista {
         System.out.println("Intenta de nuevo");
     }
 
+    public void usoEscudo(String nombre){
+        System.out.println("" + nombre + " ha usado escudo, no ha recibido daño!");
+    }
+
+    public void estadoDelEscudo(String nombre){
+        System.out.println("El héroe " + nombre + " está usando su escudo." );
+    }
+
     public void statsOfDamaged(String name, int damage, int newVida){
         System.out.println("" + name + " ha recibido " + damage + " de daño");
         System.out.println("Ahora tiene: " + newVida + " de vida.");
@@ -106,5 +114,8 @@ public class Vista {
 
     }
 
+    public void pass(String name){
+        System.out.println("El héroe " + name + " ha decidido no hacer nada. ");
+    }
 
 }

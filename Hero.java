@@ -41,10 +41,8 @@ public class Hero extends Combatiente{
         this.escudo = escudo;
     }
     
-    public void usingEscudo(){
-        if(escudo == false){
-            this.escudo = true;
-        }else if(escudo == true){
+    public void usingEscudo(){ // true es que está arriba. 
+        if(escudo == true){
             this.escudo = false;
         }
     }
