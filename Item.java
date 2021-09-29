@@ -12,7 +12,6 @@ public class Item {
         return name;
     }
 
-
     public int effect(){
         return effect;
     }

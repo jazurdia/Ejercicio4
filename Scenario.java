@@ -12,8 +12,8 @@ public class Scenario {
     Npc esqueleto;
     Boss boss;
 
-    ArrayList<Hero> turnos_hero = new ArrayList<Hero>();
-    ArrayList<Npc> turnos_npc = new ArrayList<Npc>();
+    ArrayList<Hero> turnos_hero = new ArrayList<Hero>(); // Lista de Héroes (Jugadores)
+    ArrayList<Npc> turnos_npc = new ArrayList<Npc>(); // Lista de Enemigos (NPC)
 
     //Escenario donde se llevará a cabo la pelea. 
     public void match(){
@@ -137,6 +137,8 @@ public class Scenario {
         }
     }
     
+    public void setItems()
+
     //Métodos individuales para inicializar las instancias de actores. 
     public void instanceOfOrco(){
         this.orco = new Npc("Marcus");
