@@ -118,4 +118,8 @@ public class Vista {
         System.out.println("El héroe " + name + " ha decidido no hacer nada. ");
     }
 
+    public void meLleva(){
+        System.out.println("Se ha alcanzado la capacidad máxima. ");
+    }
+
 }

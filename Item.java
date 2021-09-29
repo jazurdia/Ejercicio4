@@ -1,18 +1,12 @@
 public class Item {
     
     int effect;
-    String name;
     
-    public Item(String name, int effect){// Builder
-        this.name = name;
+    public Item(int effect){// Builder
         this.effect = effect;
     }
-    
-    public String getName(){
-        return name;
-    }
 
-    public int effect(){
+    public int getEffect(){
         return effect;
     }
 }

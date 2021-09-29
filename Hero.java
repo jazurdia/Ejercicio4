@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Hero extends Combatiente{
 
-    private int max_size = 3;
+    private int bagSize = 2;
     private boolean escudo = false; //
     private ArrayList<Item> bag = new ArrayList<Item>();
 
@@ -11,23 +11,24 @@ public class Hero extends Combatiente{
         super(nombre);
     }
     
-    public void setSize(int num){// no máximo de elementos. 
-        this.max_size = num;
+    public void setBagSize(int num){// no máximo de elementos. 
+        this.bagSize = num;
+    }
+
+    public int getBagSize(){
+        return bagSize;
     }
 
     public void addItem(Item e){
-        if (bag.size()<max_size){
-            bag.add(e);
-        }else{
-            // LLAMAR MÉTODO DE LA VISTA PARA DECIR QUE NO SE PUDO. SE PUEDE PONER TRY-CATCH. 
-        }
-        
+        bag.add(e);
     }
 
     public void useItem(Item e){
         bag.remove(e);
     }
+    
 
+    /* Esta mierda que hace?
     public ArrayList<String> insideBag(ArrayList<Item> list){
         ArrayList<String> nom_items = new ArrayList<String>();
         for (int i = 0; i < list.size(); i++){
@@ -36,6 +37,7 @@ public class Hero extends Combatiente{
 
         return nom_items;
     }
+    */
 
     public void setEscudo(boolean escudo){ // No sé si la voy a usar jaja, pero bueno x. La vida sigue. 
         this.escudo = escudo;
@@ -50,4 +52,9 @@ public class Hero extends Combatiente{
     public boolean getEscudo(){
         return escudo;
     }
+
+    public ArrayList<Item> getBag(){
+        return bag;
+    }
+
 }

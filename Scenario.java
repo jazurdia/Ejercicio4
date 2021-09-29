@@ -6,22 +6,37 @@ public class Scenario {
     // Instancia de los actores.     
     Hero warrior;
     Hero explorador;
-
     Npc orco;
     Npc enano;
     Npc esqueleto;
     Boss boss;
 
+    // Instanciamiento de Items para el uso de la clase Heroe. 
+    Item item1 = new Item(2);
+    Item item2 = new Item(3);
+    Item item3 = new Item(6);
+    Item item4 = new Item(15);
+    Item item5 = new Item(10);
+    Item item6 = new Item(8);
+
+    ArrayList<Item> items = new ArrayList<Item>();
     ArrayList<Hero> turnos_hero = new ArrayList<Hero>(); // Lista de Héroes (Jugadores)
     ArrayList<Npc> turnos_npc = new ArrayList<Npc>(); // Lista de Enemigos (NPC)
-
+    {
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        items.add(item5);
+        items.add(item6);    
+    }
+    
     //Escenario donde se llevará a cabo la pelea. 
     public void match(){
         setActors(2, 0);//MÉTODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
         boolean stopMatch = false;
+        boolean phaseOne = false;
         while (stopMatch == false){
-            
-            boolean phaseOne = false;
             while(phaseOne == false){
                 for(int i = 0; i<turnos_hero.size(); i++){
                 // MOSTRAR MENÚ
@@ -54,6 +69,8 @@ public class Scenario {
                             break;
                     }
                 }
+
+                //boss
             } 
         }
     }
@@ -137,7 +154,18 @@ public class Scenario {
         }
     }
     
-    public void setItems()
+    
+    public void fillBag(int max, Hero hero){
+        for (int i = 0; i<max; i++){
+            Random rand = new Random();
+            hero.addItemByArray(items);
+
+        }
+    
+    
+    }
+
+
 
     //Métodos individuales para inicializar las instancias de actores. 
     public void instanceOfOrco(){
@@ -165,20 +193,22 @@ public class Scenario {
         this.warrior = new Hero("Marcus");
         warrior.setPtsAttack(5);
         warrior.setVida(20);
+        warrior.setSize(2);
         turnos_hero.add(warrior);
     }
 
     public void instanceOfExplorador(){
         this.explorador = new Hero("Sophie");
-        explorador.setSize(6);
+        explorador.setSize(4);
         turnos_hero.add(explorador);
     }
 
     public void instanceOfBoss(){
         this.boss = new Boss("Rey_Orco");
         // no hay lista porque va solin solito. 
-    }
-
+    }    
+    
+    
     //Métodos de accion (métodos de batalla)
     public void attack(int index, int pts_attack, int a){
         if(a == 1){// daño a hero
